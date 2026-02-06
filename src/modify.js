@@ -12,6 +12,7 @@ Notice how the code keeps indenting further and further right.
 This is hard to read, hard to debug, and hard to maintain.
 */
 const fsCallback = require('fs');
+const { get } = require('http');
 const getStoryCallbackHell = (callback) => {
   fsCallback.readFile(getPath('story-part-1.txt'), 'utf-8', (err, part1) => {
     if (err) { console.error(err); return; }
@@ -72,6 +73,20 @@ const readFileSequentially = () => {
 // - Use .then() to join the parts after Promise.all resolves
 // - Don't forget .catch() for error handling!
 const readFilesParallel = () => {
+  const part1 = fs.readFile(getPath('story-part-1.txt'), 'utf-8');
+  const part2 = fs.readFile(getPath('story-part-2.txt'), 'utf-8');
+  const part3 = fs.readFile(getPath('story-part-3.txt'), 'utf-8');
+  const part4 = fs.readFile(getPath('story-part-4.txt'), 'utf-8');
+
+  const promises = [part1, part2, part3, part4];
+  return Promise.all(promises)
+    .then((parts) => {
+      const partsCombined = parts.join('\n');
+      return partsCombined;
+    })
+    .catch((err) => {
+      console.error(`An error occurred: ${err}`);
+    });
 };
 
 module.exports = {
