@@ -41,15 +41,27 @@ const readFileSequentially = () => {
   const storyParts = [];
   return fs.readFile(getPath('story-part-1.txt'), 'utf-8')
     .then((part1) => {
+      const text = part1;
+      storyParts.push(text);
+      return fs.readFile(getPath('story-part-2.txt'), 'utf-8');
     })
     .then((part2) => {
+      const text = part2;
+      storyParts.push(text);
+      return fs.readFile(getPath('story-part-3.txt'), 'utf-8');
     })
     .then((part3) => {
+      const text = part3;
+      storyParts.push(text);
+      return fs.readFile(getPath('story-part-4.txt'), 'utf-8');
     })
     .then((part4) => {
+      const text = part4;
+      storyParts.push(text);
+      return storyParts.join('\n');
     })
     .catch((err) => {
-      console.error(err);
+      console.error(`Error occurred: ${err}`);
     });
 };
 
