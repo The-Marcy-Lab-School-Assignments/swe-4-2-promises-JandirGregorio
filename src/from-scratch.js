@@ -18,14 +18,14 @@ const handleResolvedPromise = (promise) => {
 
 const handleResolvedOrRejectedPromise = (promise) => {
   return promise
-              .then((response) => {
-                console.log(response);
-                return response.toUpperCase();
-              })
-              .catch((error) => {
-                console.error(`Your error message was: ${error.message}`);
-                return null;
-              });
+    .then((response) => {
+      console.log(response);
+      return response.toUpperCase();
+    })
+    .catch((error) => {
+      console.error(`Your error message was: ${error.message}`);
+      return null;
+    });
 };
 
 const pauseForMs = (ms) => {
